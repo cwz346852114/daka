@@ -1,0 +1,86 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		{
+			"path": "pages/home/index"
+		},
+		{
+			"path": "pages/list/index"
+		},
+		{
+			"path": "pages/my/index"
+		},
+		{
+			"path": "pages/product/index"
+		},
+		{
+			"path": "pages/my/myProduct"	
+		},
+		{
+			"path": "pages/my/myJiang"	
+		},
+		{
+			"path" : "pages/message/index"
+		
+		},
+		{
+			"path" : "pages/request/index"
+			
+		},
+		{
+			"path" : "pages/choujiang/index"
+		
+		},
+		{
+			"path" : "pages/jiangpin/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/type/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		}
+		
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "cwz项目",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"iconPath": "static/img/home.png",
+				"selectedIconPath": "static/img/home-hover.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/list/index",
+				"iconPath": "static/img/good.png",
+				"selectedIconPath": "static/img/good-hover.png",
+				"text": "商品"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"iconPath": "static/img/my.png",
+				"selectedIconPath": "static/img/my-hover.png",
+				"text": "我的"
+			}
+		]
+	}
+
+}
