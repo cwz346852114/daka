@@ -233,8 +233,6 @@ export default {
 .scroll-content {
   flex: 1;
   overflow-y: auto;
-  padding-top: 80rpx;
-  /* 预留 tabs 高度，根据实际调整 */
 }
 
 .productList {
