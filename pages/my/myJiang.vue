@@ -3,9 +3,7 @@
 		<view v-for="(item,index) in myJiang">
 			<view class="item">
 				<view class="left">
-					<image class="img" v-if="index%3==0" src="@/static/product/beiguo.png" alt="" />
-					<image class="img" v-if="index%3==1" src="@/static/product/paigu.png" alt="" />
-					<image class="img" v-if="index%3==2" src="@/static/product/jidan.png" alt="" />
+					<image class="img" :src="item.url" alt="" />
 				</view>
 				<view class="center">
 
@@ -19,7 +17,7 @@
 				</view>
 				<view class="right">
 					<view @click="shiyong(item,index)" style="color: cornflowerblue;" class="mb-10">使用</view>
-					
+
 				</view>
 
 			</view>
@@ -52,7 +50,7 @@
 		},
 
 		methods: {
-		
+
 			shiyong(item, index) {
 				if (item.num > 1) {
 					item.num = item.num - 1
@@ -63,9 +61,9 @@
 					title: "使用成功",
 					icon: 'none'
 				})
-				
-				
-			
+
+
+
 				this.messageList.unshift({
 					title: '奖品使用',
 					content: `尊敬的用户您好，您已使用奖品${item.name}`,
@@ -79,7 +77,7 @@
 				uni.setStorage({
 					key: 'messageList',
 					data: this.messageList,
-				
+
 				})
 			},
 
@@ -104,7 +102,7 @@
 						console.log(err)
 					}
 				});
-				
+
 			},
 		}
 	}

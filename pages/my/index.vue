@@ -26,21 +26,21 @@
 					<uni-icons type="right" size="14"></uni-icons>
 				</template>
 			</uni-section>
-			<uni-section @click="goTo('/pages/my/myJiang')" class="mb-10" title="我的奖品">
+		<!-- 	<uni-section @click="goTo('/pages/my/myJiang')" class="mb-10" title="我的奖品">
 				<template v-slot:right>
 					<uni-icons type="right" size="14"></uni-icons>
 				</template>
-			</uni-section>
+			</uni-section> -->
 			<uni-section @click="goTo('/pages/message/index')" class="mb-10" title="消息通知">
 				<template v-slot:right>
 					<uni-icons type="right" size="14"></uni-icons>
 				</template>
 			</uni-section>
-			<uni-section @click="goTo('/pages/choujiang/index')" class="mb-10" title="抽奖">
+			<!-- <uni-section @click="goTo('/pages/choujiang/index')" class="mb-10" title="抽奖">
 				<template v-slot:right>
 					<uni-icons type="right" size="14"></uni-icons>
 				</template>
-			</uni-section>
+			</uni-section> -->
 			<uni-section @click="goTo('/pages/type/index')" class="mb-10" title="商品类型">
 				<template v-slot:right>
 					<uni-icons type="right" size="14"></uni-icons>
@@ -56,11 +56,11 @@
 					<uni-icons type="right" size="14"></uni-icons>
 				</template>
 			</uni-section>
-			<uni-section @click="goTo('/pages/jiangpin/index')" class="mb-10" title="奖品管理">
+			<!-- <uni-section @click="goTo('/pages/jiangpin/index')" class="mb-10" title="奖品管理">
 				<template v-slot:right>
 					<uni-icons type="right" size="14"></uni-icons>
 				</template>
-			</uni-section>
+			</uni-section> -->
 
 			<uni-popup ref="popup" type="bottom" backgroundColor='#fff' border-radius="10px 10px 0 0">
 				<scroll-view style="height: 100%;margin-bottom: 50px;" scroll-y="true">

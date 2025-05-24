@@ -10,22 +10,10 @@
             <view class="left">
               <image
                 class="img"
-                v-if="index % 3 == 0"
-                src="@/static/product/beiguo.png"
+                :src="item.img"
                 alt=""
               />
-              <image
-                class="img"
-                v-if="index % 3 == 1"
-                src="@/static/product/paigu.png"
-                alt=""
-              />
-              <image
-                class="img"
-                v-if="index % 3 == 2"
-                src="@/static/product/jidan.png"
-                alt=""
-              />
+        
             </view>
             <view class="center">
               <view>{{ item.name }}</view>
@@ -35,7 +23,7 @@
               </view>
               <view>
                 <view>价格：{{ item.price }} 分</view>
-                <!-- <view>{{item.count}}</view> -->
+                <!-- <view>{{item.count}}</view> --> 
               </view>
             </view>
             <view class="right">
@@ -108,10 +96,9 @@ export default {
           });
         } else {
           this.myProductList.push({
-            name: item.name,
+            ...item,
             num: 1, //数量
-            code: item.code,
-            price: item.price,
+         
           });
         }
         this.messageList.unshift({
@@ -154,6 +141,7 @@ export default {
         key: "productList",
         success: (res) => {
           this.productList = res.data;
+		  console.log(this.productList)
         },
         fail: function (err) {
           console.log(err);
@@ -200,6 +188,7 @@ export default {
       let items = this.typeList.find((el) => el.name === e.name);
       this.current = e.index;
       this.copyList = this.productList.filter((el) => el.type === items.code);
+	  console.log(this.copyList)
     },
     onClickItem(e) {
       let items = this.typeList.find((el) => el.name === e.name);
@@ -223,9 +212,7 @@ export default {
   position: sticky;
   top: 0;
   z-index: 999;
-  background-color: #fff;
-  /* 背景色防止透明 */
-  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+
   /* 可选：添加阴影效果 */
 }
 

@@ -3,9 +3,8 @@
 		<view v-for="(item,index) in jiangpinList">
 			<view class="item">
 				<view class="left">
-					<image class="img" v-if="index%3==0" src="@/static/product/beiguo.png" alt="" />
-					<image class="img" v-if="index%3==1" src="@/static/product/paigu.png" alt="" />
-					<image class="img" v-if="index%3==2" src="@/static/product/jidan.png" alt="" />
+					<image class="img" :src="item.img" alt="" />
+		
 				</view>
 				<view class="center">
 					<view>{{item.name}}</view>

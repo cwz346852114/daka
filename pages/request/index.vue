@@ -3,9 +3,8 @@
 		<view v-for="(item,index) in requestList">
 			<view class="item">
 				<view class="left">
-					<image class="img" v-if="index%3==0" src="@/static/product/beiguo.png" alt="" />
-					<image class="img" v-if="index%3==1" src="@/static/product/paigu.png" alt="" />
-					<image class="img" v-if="index%3==2" src="@/static/product/jidan.png" alt="" />
+					<image class="img" src="@/static/product/renwu.png" alt="" />
+				
 				</view>
 				<view class="center">
 
@@ -237,11 +236,12 @@
 			margin: 20rpx;
 			border-radius: 4px;
 			align-items: center;
-
+			
 			.left {
 				.img {
 					width: 120rpx;
 					height: 120rpx;
+					margin-right: 20rpx;
 				}
 			}
 

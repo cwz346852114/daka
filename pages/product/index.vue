@@ -3,9 +3,7 @@
 		<view v-for="(item,index) in productList" :key="index">
 			<view class="item">
 				<view class="left">
-					<image class="img" v-if="index%3==0" src="@/static/product/beiguo.png" alt="" />
-					<image class="img" v-if="index%3==1" src="@/static/product/paigu.png" alt="" />
-					<image class="img" v-if="index%3==2" src="@/static/product/jidan.png" alt="" />
+					<image class="img" :src="item.img" alt="" />
 				</view>
 				<view class="center">
 					<view>{{item.name}}</view>
@@ -26,7 +24,7 @@
 		<view class="addProduct">
 			<button class="button" type="primary" @click="switchBtn()">添加商品</button>
 		</view>
-		
+
 		<uni-popup ref="popup" type="bottom" backgroundColor='#fff' border-radius="10px 10px 0 0">
 			<scroll-view style="height: 100%;" scroll-y="true">
 				<uni-forms :modelValue="formData" ref="form" :rules="rules" style="margin-top: 10px;">
@@ -40,6 +38,13 @@
 						<picker @change="bindTypeChange" :value="typeIndex" :range="typeList" range-key="name">
 							<view class="picker">
 								{{formData.type ? getTypeName(formData.type) : '请选择商品类型'}}
+							</view>
+						</picker>
+					</uni-forms-item>
+					<uni-forms-item label="商品图片" name="img">
+						<picker @change="bindImgChange" :value="typeIndex" :range="imgList" range-key="name">
+							<view class="picker">
+								{{formData.img ? getTypeName(formData.img) : '请选择商品图片'}}
 							</view>
 						</picker>
 					</uni-forms-item>
@@ -68,6 +73,7 @@
 	export default {
 		data() {
 			return {
+
 				typeIndex: -1,
 				typeList: [],
 				productList: [],
@@ -78,7 +84,8 @@
 					type: '',
 					price: "",
 					number: 1,
-					sort: 0
+					sort: 0,
+					img: ""
 				},
 				index: 0,
 				rules: {
@@ -112,7 +119,24 @@
 							errorMessage: '请填写库存数量',
 						}],
 					}
-				}
+				},
+				imgList: [{
+						name: "零食",
+						url: "/static/product/foot.png"
+					},
+					{
+						name: "饮料",
+						url: "/static/product/kele.png"
+					},
+					{
+						name: "丝袜",
+						url: "/static/product/wazi.png"
+					},
+					{
+						name: "情趣",
+						url: "/static/product/neiyi.png"
+					},
+				]
 			}
 		},
 		onLoad() {
@@ -124,12 +148,15 @@
 				const type = this.typeList.find(item => item.code === typeCode)
 				return type ? type.name : '未分类'
 			},
-			
+
 			bindTypeChange(e) {
 				this.typeIndex = e.detail.value
 				this.formData.type = this.typeList[this.typeIndex].code
 			},
-			
+			bindImgChange(e) {
+				this.typeIndex = e.detail.value
+				this.formData.img = this.imgList[this.typeIndex].url
+			},
 			getTypeList() {
 				uni.getStorage({
 					key: 'typeList',
@@ -141,17 +168,17 @@
 					}
 				})
 			},
-			
-			
-			
+
+
+
 			confirm() {
 				const product = this.productList[this.index]
-				
+
 				// 从商品列表中删除
 				this.productList.splice(this.index, 1)
-				
-			
-				
+
+
+
 				// 更新商品缓存
 				uni.setStorage({
 					key: 'productList',
@@ -162,16 +189,16 @@
 					}
 				})
 			},
-			
+
 			remove(index) {
 				this.index = index
 				this.$refs.myDialog.open()
 			},
-			
+
 			close() {
 				this.$refs.myDialog.close()
 			},
-			
+
 			getList() {
 				uni.getStorage({
 					key: 'productList',
@@ -183,7 +210,7 @@
 					}
 				})
 			},
-			
+
 			switchBtn() {
 				this.title = '新增'
 				this.typeIndex = -1
@@ -197,26 +224,26 @@
 				}
 				this.$refs.popup.open()
 			},
-			
+
 			closeDrawer() {
 				this.$refs.popup.close()
 			},
-			
+
 			editForm(item, index) {
 				this.title = '编辑'
 				this.formData = JSON.parse(JSON.stringify(item))
 				this.index = index
-				
+
 				// 设置当前选中的typeIndex
 				if (this.formData.type) {
 					this.typeIndex = this.typeList.findIndex(t => t.code === this.formData.type)
 				} else {
 					this.typeIndex = -1
 				}
-				
+
 				this.$refs.popup.open()
 			},
-			
+
 			submitForm() {
 				this.$refs.form.validate((err, formData) => {
 					if (!err) {
@@ -226,15 +253,15 @@
 						} else {
 							this.productList.splice(this.index, 1, this.formData)
 						}
-						
-				
+
+
 						// 排序商品列表
 						this.productList.sort((x, y) => {
 							if (!x.sort) x.sort = 0
 							if (!y.sort) y.sort = 0
 							return x.sort - y.sort
 						})
-						
+
 						// 保存商品列表
 						uni.setStorage({
 							key: 'productList',
@@ -254,14 +281,14 @@
 <style lang="scss" scoped>
 	.productList {
 		padding-bottom: 90rpx;
-		
+
 		.addProduct {
 			position: fixed;
 			bottom: 0;
 			left: 0;
 			right: 0;
 		}
-		
+
 		.item {
 			display: flex;
 			background-color: #fff;
@@ -269,25 +296,25 @@
 			margin: 20rpx;
 			border-radius: 4px;
 			align-items: center;
-			
+
 			.left {
 				.img {
 					width: 120rpx;
 					height: 120rpx;
 				}
 			}
-			
+
 			.center {
 				flex: 1;
 			}
-			
+
 			.right {
 				display: flex;
 				flex-direction: column;
 			}
 		}
 	}
-	
+
 	.picker {
 		padding: 12rpx 20rpx;
 		border: 1rpx solid #e5e5e5;
@@ -295,7 +322,7 @@
 		color: #333;
 		font-size: 28rpx;
 	}
-	
+
 	.button {
 		margin: 20rpx;
 	}

@@ -3,9 +3,7 @@
 		<view v-for="(item,index) in myProductList">
 			<view class="item">
 				<view class="left">
-					<image class="img" v-if="index%3==0" src="@/static/product/beiguo.png" alt="" />
-					<image class="img" v-if="index%3==1" src="@/static/product/paigu.png" alt="" />
-					<image class="img" v-if="index%3==2" src="@/static/product/jidan.png" alt="" />
+					<image class="img" :src="item.img" alt="" />
 				</view>
 				<view class="center">
 
@@ -100,9 +98,9 @@
 					title: "使用成功",
 					icon: 'none'
 				})
-				
-				
-			
+
+
+
 				this.messageList.unshift({
 					title: '商品使用',
 					content: `尊敬的用户您好，您已使用商品${item.name}`,
@@ -116,7 +114,7 @@
 				uni.setStorage({
 					key: 'messageList',
 					data: this.messageList,
-				
+
 				})
 			},
 
